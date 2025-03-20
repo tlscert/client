@@ -21,6 +21,7 @@ func main() {
 	server := flag.String("server", "localhost:8080", "the server to use")
 	target := flag.String("target", "http://localhost:8080", "the target port to proxy to")
 	port := flag.String("port", "8443", "the port to listen on")
+	flag.Parse()
 
 	address := url.URL{Scheme: "http", Host: *server, Path: "/certificate"}
 
@@ -39,6 +40,7 @@ func main() {
 	}
 	listenPort := net.JoinHostPort("", *port)
 	targetUrl, err := url.Parse(*target)
+	log.Printf("Target URL: %s", targetUrl)
 
 	if err != nil {
 		log.Fatal(err)
