@@ -54,7 +54,7 @@ func main() {
 	}
 
 	go func() {
-		log.Printf("Starting proxy on %s", srv.Addr)
+		log.Printf("Starting proxy on https://%s%s", pair.Leaf.DNSNames[0], srv.Addr)
 		if err := srv.ListenAndServeTLS("", ""); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.Fatalf("Failed to start proxy: %v", err)
 		}
